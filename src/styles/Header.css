@@ -1,0 +1,27 @@
+.list-items {
+    display: flex;
+    gap: 30px;
+    text-decoration: none;
+    color: white;
+    padding: 20px;
+}
+.head-content {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+.list-items a {
+    text-decoration: none;
+    color: white;
+
+}
+li {
+    list-style-type: none;
+}
+header {
+    
+    
+}
+.head {
+    background-color: #6f6f6f;
+}
