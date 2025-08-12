@@ -1,0 +1,11 @@
+#category-sec {
+    margin-top: 40px;
+}
+ .category {
+    display: grid;
+    grid-template-columns: 280px 280px 280px 280px;
+    justify-content: space-between;
+ }
+  .category img {
+    max-width: 280px;
+  }

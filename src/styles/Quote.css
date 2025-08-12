@@ -1,0 +1,29 @@
+.quote {
+    display: grid;
+    /* grid-template-columns: 600px 580px; */
+    grid-template-columns: 50% 50%;
+
+}
+#quote-sec {
+    margin-top: 40px;
+}
+
+ .left-quote {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 5px;
+    background-color: #292e34;
+    color: white;
+    /* text-align: right; */
+    padding: 40px;
+    font-size: 14px;
+ }
+
+.left-quote h4 {
+    padding-top: 20px;
+}
+.right-quote img{
+    max-width: 600px;
+}

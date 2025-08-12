@@ -1,6 +1,6 @@
 .list-items {
     display: flex;
-    gap: 30px;
+    gap: 20px;
     text-decoration: none;
     color: white;
     padding: 20px;
@@ -8,7 +8,7 @@
 .head-content {
     display: flex;
     justify-content: space-between;
-    gap: 10px;
+    align-items: center;
 }
 .list-items a {
     text-decoration: none;
@@ -18,10 +18,16 @@
 li {
     list-style-type: none;
 }
-header {
-    
-    
-}
 .head {
     background-color: #6f6f6f;
+}
+button {
+    padding: 10px;
+    background-color: #f57c00;
+    border: none;
+    color: white;
+    font-weight: 600;
+    font-size: 16px;
+    border-radius: 10px;
+    cursor: pointer;
 }

@@ -1,0 +1,11 @@
+.card-1 h3{
+    color: #464646;
+    font-weight: 700;
+    padding-top: 10px;
+}
+.card-1 p {
+    padding-top: 10px;
+    font-weight: 500;
+    font-size: 14px;
+    color: #464646;
+}

@@ -1,0 +1,34 @@
+#skills {
+    margin-top: 40px;
+}
+.our-skills {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    /* max-height: 200px; */
+}
+.our-skills img {
+    max-height: 303.14px;
+    object-fit: cover;
+}
+.right-skill {
+    background-color: rgb(194, 190, 190);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+    color:  #6f6f6f;
+    padding: 40px;
+    font-size: 14px;
+    letter-spacing: .3x;
+}
+.right-skill h2 {
+    color: #464646;
+    font-weight: 700;
+    font-size: 1.7rem;
+}
+.right-skill p {
+    line-height: 1.5;
+}
+.right-skill h4 {
+    font-size: 1.3rem;
+}

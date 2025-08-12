@@ -1,0 +1,96 @@
+footer {
+    padding-bottom: 30px;
+}
+.foot-content {
+    display: grid;
+    grid-template-columns: 300px 300px 300px 350px;
+    margin-top: 40px;
+    padding-top: 40px;
+    color: white;
+}
+.foot {
+    background-color: #292e34;
+}
+.foot  p {
+    font-size: 14px;
+}
+.col-first {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.col-first img {
+    max-width: 119px;
+}
+.col-first p {
+    line-height: 2;
+    font-size: 14px;
+}
+.foot-icons button {
+    background-color: #292e34;
+    font-size: 20px;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+.foot-icons {
+    display: flex;
+    gap: 15px;
+}
+.col-second {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 35px;
+}
+.col-second div {
+    display: flex;
+    gap: 10px;
+}
+.col-third {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 35px;
+}
+.col-four {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 35px;
+}
+/* seaarch bar */
+.search-form {
+  display: flex; /* Aligns input and button horizontally */
+  align-items: left; /* Vertically centers content */
+}
+
+.search-input {
+  padding: 8px;
+  border-radius: 50px;
+  background-color: #313840;
+  border: solid #313840
+  /* flex-grow: 1; Allows input to expand */
+}
+
+.search-button {
+  padding: 8px 12px;
+  background-color: #dd7608;
+  color: white;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  margin-left: 5px; /* Adds space between input and button */
+}
+
+.hr-line hr {
+    margin-top: 30px;
+    border-top: 1px solid rgba(255, 255, 255, .1);
+}
+.copyright {
+    display: flex;
+    color: #ccc;
+    justify-content: space-between;
+    margin-top: 20px;
+    font-size: 14px;
+}
