@@ -1,9 +1,10 @@
 .list-items {
     display: flex;
-    gap: 20px;
+    gap: 40px;
     text-decoration: none;
     color: white;
     padding: 20px;
+    
 }
 .head-content {
     display: flex;
@@ -13,17 +14,22 @@
 .list-items a {
     text-decoration: none;
     color: white;
-
+    
+}
+.list-items span {
+    font-size: 14px;
+    font-weight: 600;
 }
 li {
     list-style-type: none;
 }
 .head {
-    background-color: #6f6f6f;
+    background-color: #292e34;
 }
 button {
     padding: 10px;
     background-color: #f57c00;
+    /* background-color: #FF6F3C; */
     border: none;
     color: white;
     font-weight: 600;
@@ -31,3 +37,55 @@ button {
     border-radius: 10px;
     cursor: pointer;
 }
+
+/* Dropdown  */
+.profile-dropdown {
+  position: absolute;
+  top: 63px;
+  right: 150px;
+  background: #292e34;
+  border-radius: 8px;
+  width: 180px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+  overflow: hidden;
+  z-index: 1000;
+}
+
+.profile-dropdown .dropdown-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 15px;
+  color: #FF6F3C;
+  text-decoration: none;
+  font-size: 16px;
+  border-bottom: 1px solid rgba(255,255,255,0.15);
+}
+
+.profile-dropdown .dropdown-item i {
+  margin-right: 10px;
+}
+
+.profile-dropdown .dropdown-item:hover {
+  background: rgba(0,0,0,0.1);
+}
+.profile-dropdown .logout-btn {
+  background: none;
+  border: none;
+  color: white;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+}
+.header-profile-icon .profile-icon  {
+    background-color: #FF6F3C;
+    border-radius: 50px;
+}
+.profile-dropdown .logout-btn {
+    color: #FF6F3C;
+}
+
+  
+
+
+

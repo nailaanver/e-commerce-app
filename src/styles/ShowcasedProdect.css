@@ -1,0 +1,29 @@
+#showcase {
+    margin-top: 50px;
+}
+.content-showcase {
+    text-align: center;
+}
+.content-showcase h4{
+    font-size: 14px;
+    color: #6f6f6f;
+    margin-bottom: 10px;
+}
+.content-showcase h1{
+    font-size: 30px;
+    color: #464646;
+}
+.showcase-cards {
+    margin-top: 40px;
+}
+.showcase-card-1 {
+    max-width: 310px;
+    min-height: 342px;
+    line-height: 2;
+}
+.star svg {
+    color: #e8c54a;
+}
+.price-color {
+    color: #464646;
+}

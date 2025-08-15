@@ -25,7 +25,7 @@ const Footer = () => {
                     <img src='/images/logo.png' />
                     <p>We provides a full range of interior design architectural design natural materials.</p>
                     <div className="foot-icons">
-                        <button><FontAwesomeIcon icon={faSquareTwitter} /></button>
+                        <button><FontAwesomeIcon className='foot-icon-style' icon={faSquareTwitter}  /></button>
                         <button><FontAwesomeIcon icon={faFacebook} /></button>
                         <button><FontAwesomeIcon icon={faLinkedin} /></button>
                         <button><FontAwesomeIcon icon={faInstagram} /></button>

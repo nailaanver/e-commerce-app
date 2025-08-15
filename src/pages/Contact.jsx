@@ -1,7 +1,13 @@
+import ContactForm from "../components/ContactForm"
+import HomeBannerContact from "../components/HomeBannerContact"
+
 const Contact = () => {
     return(
         <div>
-            <h2>hbecfw</h2>
+            <main>
+                <HomeBannerContact/>
+                <ContactForm/>
+            </main>
         </div>
     )
 }

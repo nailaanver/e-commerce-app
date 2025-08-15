@@ -1,0 +1,41 @@
+.contact-img {
+    position: relative;
+}
+.contact-img img {
+    max-height: 484px;
+}
+.banner-contact {
+    position: absolute;
+    bottom: 40%;
+    left: 45%;
+    text-align: center;
+    line-height: 2;
+}
+.banner-contact h1 {
+    color: white;
+    font-size: 30px;
+    
+}
+.banner-contact .bread-crums {
+    text-decoration: none;
+    color: white;
+    font-size: 12px;
+}
+
+/* second section (map) */
+
+#contact-map {
+    margin-top: 40px;
+}
+.map-contact {
+    text-align: center;
+}
+.map-contact h1 {
+    color: #464646;
+    font-size: 30px;
+}
+.map iframe{
+    width: 100%;
+    margin-top: 40px;
+    border: none;
+}

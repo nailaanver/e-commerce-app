@@ -7,6 +7,7 @@ import Footer from "../components/Footer"
 import ReadMore from "../components/ReadMore"
 import Skills from "../components/Skills"
 import OurBlog from "../components/OurBlog"
+import ShowcasedProduct from "../components/ShowcasedProduct"
 const Home = () => {
     return (
         <div>
@@ -14,6 +15,7 @@ const Home = () => {
             <main>
                 <HomeBanner />
                 <OurBenefits />
+                <ShowcasedProduct/>
                 <Quote/>
                 <Category/>
                 <ReadMore/>
