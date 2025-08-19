@@ -1,8 +1,12 @@
+import ServiceItems from "../components/ServiceItems"
+import ServicesBanner from "../components/ServicesBanner"
+
 const Services = () => {
     return(
-        <div>
-            jakdd
-        </div>
+        <main>
+            <ServicesBanner/>
+            <ServiceItems/>
+        </main>
     )
 }
 export default Services

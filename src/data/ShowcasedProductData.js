@@ -24,7 +24,7 @@ export const ShowcasedProductData = [
         price:'USD 400.00'
     },
     {   id:1,
-        image: '/images/bubble-sofa.webp',
+        image: '/images/teatable-1.webp',
         title:'Bubble Sofa',
         icon:'faStarRegular',
         price:'USD 500.00'

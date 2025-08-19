@@ -1,10 +1,13 @@
+import { Product } from "../components/Product"
+
 
 
 const Blog = () => {
     return(
-        <div>
-            
-        </div>
+        <main>
+            <Product/>
+        </main>
+        
     )
 }
 export default Blog

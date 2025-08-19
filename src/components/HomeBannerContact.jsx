@@ -13,7 +13,7 @@ const HomeBannerContact = () => {
         <div className="banner-contact container">
             <h1>CONTACT US</h1>
             <Link to = {'/'} className='bread-crums'>
-                <span>HOME - Contact us</span>
+                HOME <span>-</span> Contact us
             </Link>
         </div>
         </div>

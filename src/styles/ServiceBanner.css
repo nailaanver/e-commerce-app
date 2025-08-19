@@ -1,0 +1,111 @@
+.service-banner-content{
+    position: relative;
+}
+.service-banner-content{
+    max-height: 484px;
+}
+.service-head{
+    position: absolute;
+    bottom: 40%;
+    left: 45%;
+    text-align: center;
+    line-height: 2;
+}
+.service-head{
+    color: white;
+    font-size: 30px;
+    
+}
+.service-head .bread-crums{
+    text-decoration: none;
+    color: white;
+    font-size: 12px;
+}
+
+#service-items {
+    margin-top: 50px;
+}
+
+ /* servuce items.css */
+
+ .design-layout {
+  display: flex;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.sidebar {
+  flex: 0 0 250px;
+  background: #f4f4f4;
+  padding: 1rem;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar li {
+  padding: 15px;
+  margin-bottom: 8px;
+  cursor: pointer;
+  background: #e0e0e0;
+  transition:  0.2s;
+}
+
+.sidebar li:hover {
+  background: #ccc;
+}
+
+.sidebar li.active {
+  background: #222;
+  color: #fff;
+}
+
+.content {
+  flex: 1;
+  padding: 2rem;
+}
+
+.content h4 {
+  color: #777;
+  margin-bottom: 0.5rem;
+}
+
+.content h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.content p {
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.content img {
+  max-width: 100%;
+  border-radius: 8px;
+}
+
+
+/* sidebar */
+
+.sidebar {
+  max-width: 300px;
+  view-timeline-axis: left;
+  
+}
+.sidebar :active {
+  background-color: #292e34;
+}
+.sidebar button {
+  background-color: #e6e6e6;
+  color: #464646;
+  width: 100%;
+  font-size: 12px;
+}
+.sidebar :hover {
+    color: #fff;
+    background: #292e34;
+}

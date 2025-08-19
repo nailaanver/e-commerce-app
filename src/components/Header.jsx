@@ -24,6 +24,7 @@ const Header = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(false)
     const [hidden, setHidden] = useState(false)
     const [isDropdownOpen, setIsDropdownOpen] = useState(false)
+    const [isShopDropdown, setShopDropdown] = useState(false)
 
     useEffect(() => {
         // console.log(location.pathname)
@@ -65,9 +66,9 @@ const Header = () => {
                         <li><Link to={'/contact'}>
                             <span>CONTACT</span>
                         </Link></li>
+                        
 
 
-                       
 
 
                         <li><Link to = {'/blog'}>
@@ -77,6 +78,23 @@ const Header = () => {
                         {/* <li><Link to = {'/login'}><button>Login</button></Link></li> */}
                     </ul>
                 </nav>
+                
+                {/* <div className="header-profile-icon">
+                        <button className="profile-icon" onClick={() => setShopDropdown(!isShopDropdown)}>
+                            
+                        </button>
+                        {isDropdownOpen && (
+                            <div className="profile-dropdown">
+                                <Link to="/product" className="dropdown-item">
+                                    Product
+                                </Link>
+                                <Link to="/product_detaila" className="dropdown-item">
+                                    Product Details
+                                </Link>
+                            </div>
+                        )}
+
+                    </div> */}
 
 
 

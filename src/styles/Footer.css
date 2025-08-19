@@ -65,13 +65,15 @@ footer {
 .search-form {
   display: flex; /* Aligns input and button horizontally */
   align-items: left; /* Vertically centers content */
+  position: relative;
 }
 
 .search-input {
   padding: 8px;
   border-radius: 50px;
   background-color: #313840;
-  border: solid #313840
+  border: solid #313840;
+  max-width: 270px;
   /* flex-grow: 1; Allows input to expand */
 }
 
@@ -83,6 +85,8 @@ footer {
   border-radius: 50px;
   cursor: pointer;
   margin-left: 5px; /* Adds space between input and button */
+  position: absolute;
+  right: 81px;
 }
 
 .hr-line hr {
@@ -95,4 +99,7 @@ footer {
     justify-content: space-between;
     margin-top: 20px;
     font-size: 14px;
+}
+.col-four p {
+    text-align: justify;
 }

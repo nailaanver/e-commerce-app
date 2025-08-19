@@ -5,18 +5,18 @@ export const CategoryData = [
         department:'Entertainment Unit'
     },
     {
-        image:'/images/category-img.webp',
+        image:'/images/img2.webp',
         title:'Furnicture',
         department:'Mounted Unit'
     },
 
     {
-        image:'/images/category-img.webp',
+        image:'/images/img3.webp',
         title:'Interior',
         department:'Contemporary Wall Unit'
     },
     {
-        image:'/images/category-img.webp',
+        image:'/images/img4.webp',
         title:'Interior',
         department:'Crockery Unit'
     },

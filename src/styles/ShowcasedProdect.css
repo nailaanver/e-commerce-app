@@ -1,29 +1,49 @@
 #showcase {
     margin-top: 50px;
 }
+
 .content-showcase {
     text-align: center;
 }
-.content-showcase h4{
+
+.content-showcase h4 {
     font-size: 14px;
     color: #6f6f6f;
     margin-bottom: 10px;
 }
-.content-showcase h1{
+
+.content-showcase h1 {
     font-size: 30px;
     color: #464646;
 }
+
 .showcase-cards {
     margin-top: 40px;
 }
-.showcase-card-1 {
-    max-width: 310px;
-    min-height: 342px;
+
+.showcase-card {
     line-height: 2;
+    background: #f9f5ef;
+    padding: 15px;
 }
+.showcase-card h4 {
+    color: #464646;
+    font-size: 18px;
+}
+.showcase-card h2 {
+    color: #6f6f6f;
+    font-size: 22px;
+}
+.showcase-card img {
+    max-width: 317px;
+    min-height: 350px;
+    object-fit: cover;
+}
+
 .star svg {
     color: #e8c54a;
 }
+
 .price-color {
     color: #464646;
 }
