@@ -29,8 +29,10 @@ const ShowcasedProduct = () => {
                     {
                         ShowcasedProductData.map((item) => (
                             <div className="showcase-card">
-                                 <ShowcasedProductCard image = {item.image} title = {item.title} icon = {item.icon} price = {item.price}/>
+                                 <ShowcasedProductCard image = {item.image} title = {item.title} icon = {item.icon} price = {item.price} />
+                                
                             </div>
+                            
                         ))
                     }
                     </Slider>
