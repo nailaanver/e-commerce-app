@@ -103,7 +103,7 @@
 
 
 
-//                 <div className="header-icon">
+//                  <div className="header-icon">
 //                     <div className="header-profile-icon">
 //                         <button className="profile-icon" onClick={() => setIsDropdownOpen(!isDropdownOpen)}>
 //                             <FontAwesomeIcon icon={faCircleUser} />
@@ -172,13 +172,21 @@ import { faCircleUser, faUser, faHeart, faMessage, faGear, faArrowRightFromBrack
 
 const Header = () => {
 
+    const [formData, setFormData] = useState({
+  name: "",
+  email: "",
+  password: ""
+});
+
     const navigator = useNavigate()
     const location = useLocation()
 
-    const handleLogout = () => {
+    const handleLogout = (e) => {
         window.localStorage.clear()
         setIsLoggedIn(false)
         setLogout(true)
+
+        
 
         navigator('/login')
     }
@@ -250,25 +258,8 @@ const Header = () => {
                                 </ul>
                             )}
                         </li>
-
-
-
-
-                        {/* 
-                        <li><Link to={'/blog'}>
-                            <span>SHOP</span>
-                        </Link></li> */}
-
-                        {/* <li><Link to = {'/login'}><button>Login</button></Link></li> */}
                     </ul>
                 </nav>
-
-               
-                        
-
-
-
-
                 <div className="header-icon">
                     <div className="header-profile-icon">
                         <button className="profile-icon" onClick={() => setIsDropdownOpen(!isDropdownOpen)}>
@@ -279,7 +270,7 @@ const Header = () => {
 
 
                                 <p>{isLoggedIn ? (
-                                    <h1>Welcome, {data.email}!</h1>
+                                    <h1>Hi, {formData.name}!</h1>
                                 ) : (
                                     <h1>Please log in.</h1>
                                 )}</p>

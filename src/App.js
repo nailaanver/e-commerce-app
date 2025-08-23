@@ -1,4 +1,4 @@
-import logo from './logo.svg';
+ import logo from './logo.svg';
 import React from 'react';
 import './App.css';
 import { BrowserRouter, Routes, Route } from "react-router-dom"
@@ -40,6 +40,8 @@ function App() {
                 <Route path='/services' element={<Services />} />
                 {/* <Route path='/blog' element={<Blog />} /> */}
                 <Route path="/product" element={<Product />} />
+                <Route path="/product/:id" element={<ProductDetails />} />
+
                 <Route path="/product_details" element={<ProductDetails />} />
                 <Route path='/login' element={<Login />}></Route>
                 <Route path='/signup' element={<SignUp />}></Route>
