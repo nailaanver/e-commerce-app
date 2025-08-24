@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import "../styles/ProductDetails.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCartShopping, faStar } from "@fortawesome/free-solid-svg-icons";
+import { faCartShopping, faStar, faHeart } from "@fortawesome/free-solid-svg-icons";
 import { faFacebook, faInstagram, faLinkedin, faSquareTwitter } from "@fortawesome/free-brands-svg-icons";
 import { Product } from "./Product";
 
@@ -75,7 +75,7 @@ const ProductDetails = () => {
               <button onClick={handleIncrease}>+</button>
             </div>
             <button className="add-to-cart">Add to Cart <FontAwesomeIcon icon={faCartShopping} /></button>
-            <button className="wishlist">♡</button>
+            <button className="wishlist"><FontAwesomeIcon icon={faHeart} /></button>
           </div>
 
           {/* Product Details */}
