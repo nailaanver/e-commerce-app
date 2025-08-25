@@ -8,7 +8,6 @@ import ReadMore from "../components/ReadMore"
 import Skills from "../components/Skills"
 import OurBlog from "../components/OurBlog"
 import ShowcasedProduct from "../components/ShowcasedProduct"
-import Counter from "../components/UseReducer"
 import { Suspense, useState } from "react"
 import React from "react"
 

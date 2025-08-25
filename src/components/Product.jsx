@@ -20,7 +20,7 @@ const priceOptions = [
 ]
 
 
-export const Product = () => {
+ const Product = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 6;
   const totalPages = Math.ceil(ProductData.length / itemsPerPage);
@@ -100,7 +100,7 @@ export const Product = () => {
 
             {
               // currentItems.map((item) => <ProductCard image={item.image} category={item.category} title={item.title} actual={item.price.actual} selling={item.price.selling} />)
-              currentItems.map((item) => <ProductCard image={item.image} category={item.category} title={item.title} price = {item.price} />)
+              currentItems.map((item) => <ProductCard id = {item.id} image={item.image} category={item.category} title={item.title} price = {item.price} />)
 
             }
           </div>
@@ -120,6 +120,7 @@ export const Product = () => {
     </>
   )
 }
+export default Product
 
 
 

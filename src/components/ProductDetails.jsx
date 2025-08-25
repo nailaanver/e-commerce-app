@@ -4,12 +4,16 @@ import "../styles/ProductDetails.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartShopping, faStar, faHeart } from "@fortawesome/free-solid-svg-icons";
 import { faFacebook, faInstagram, faLinkedin, faSquareTwitter } from "@fortawesome/free-brands-svg-icons";
-import { Product } from "./Product";
+
 
 const ProductDetails = () => {
+
+
   const [quantity, setQuantity] = useState(1);
   const [activeTab, setActiveTab] = useState("description");
-  const [] = useState()
+
+
+
 
   const handleIncrease = () => setQuantity(quantity + 1);
   const handleDecrease = () => {
@@ -18,7 +22,7 @@ const ProductDetails = () => {
 
   return (
 
-   
+
 
 
     <div className="product-details-container container">
@@ -26,17 +30,20 @@ const ProductDetails = () => {
       <div className="product-main-div">
         <div className="product-images">
           <div className="thumbnail-list">
+
             <img src="/images/product1.webp" alt="thumb1" />
             <img src="/images/product2.webp" alt="thumb2" />
             <img src="/images/product3.webp" alt="thumb3" />
           </div>
           <div className="main-image">
             <img src="/images/product5.webp" alt="main sofa" />
+
+
           </div>
         </div>
 
 
-       
+
 
 
 
@@ -66,6 +73,7 @@ const ProductDetails = () => {
             a completely modern design and you feel comfortable to put on this
             hijab. Buy it at the best price.
           </p>
+          
 
           {/* Quantity + Add to cart */}
           <div className="cart-actions">

@@ -164,7 +164,7 @@ const LoginForm = () => {
   // console.log(res.data.data, 'from then')
 
   window.localStorage.setItem('access_token', res.data.token)
-  window.localStorage.setItem('user_data', JSON.stringify(res.data.token))
+  window.localStorage.setItem('user_data', JSON.stringify(res.data.data))
   navigator('/')
 
   }).catch(err => {

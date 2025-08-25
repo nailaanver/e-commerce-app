@@ -4,6 +4,7 @@ import { faSquareTwitter, faFacebook, faLinkedin, faInstagram } from '@fortaweso
 import { faLocationDot, faEnvelope, faPhone } from '@fortawesome/free-solid-svg-icons'
 import { useEffect,useState } from 'react'
 import { useLocation } from 'react-router-dom'
+import AdminFooter from './AdminFooter'
 
 
 
@@ -11,7 +12,7 @@ const Footer = () => {
     const [hidden, setHidden] = useState(false)
     const location = useLocation()
     useEffect(()=>{
-            if(location.pathname === '/login' || location.pathname === '/signup'){
+            if(location.pathname === '/login' || location.pathname === '/signup' || location.pathname === '/admin'){
                 setHidden(true)
             }else {
                 setHidden(false)
@@ -59,7 +60,8 @@ const Footer = () => {
                         <input type="text" placeholder="Search..." className="search-input" />
                         <button type="submit" className="search-button">SUBMIT</button>
                     </form>
-                    <p>Follow our newsletter to stay updated about agency.</p>
+                    <p>Follow our newsletter to stay</p> 
+                        <p>updated about agency.</p>
                 </div>
             </div>
             <div className="hr-line container">
@@ -76,4 +78,8 @@ const Footer = () => {
         </footer>
     )
 }
+
+
+{/* <AdminFooter/> */}
+
 export default Footer
