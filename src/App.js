@@ -23,6 +23,7 @@ function App() {
     <main>
       <BrowserRouter>
       <ProtectRoutes/>
+      
         <Header />
         
           <AuthProvider>

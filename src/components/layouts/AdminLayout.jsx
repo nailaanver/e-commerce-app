@@ -269,13 +269,6 @@ export default function PersistentDrawerLeft() {
 
       </Main>
 
-
-
-
-
-
-
-
     </Box>
   );
 }
