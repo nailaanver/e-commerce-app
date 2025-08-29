@@ -14,6 +14,9 @@ import { AuthProvider } from './context/AuthContext';
 import  Product  from './components/Product';
 import ProductDetails from './components/ProductDetails';
 import AdminDashboard from './components/AdminDashboard';
+import Orders from './pages/admin/Orders';
+import AdminLayout from './components/layouts/AdminLayout'
+import UserLayout from './components/layouts/UserLayout';
 
 
 
@@ -22,34 +25,31 @@ function App() {
   return (
     <main>
       <BrowserRouter>
-      <ProtectRoutes/>
-      
-        <Header />
-        
+      <ProtectRoutes/>        
           <AuthProvider>
             <ErrorBoundary>
               <Routes>
-
-                <Route path='/' element={<Home />} />
-                <Route path='admin' element={<AdminDashboard />} />
-
+                <Route element={<UserLayout/>}>
+                 <Route path='/' element={<Home />} />
                 <Route path='/contact' element={<Contact />} />
-
                 <Route path='/services' element={<Services />} />
                 {/* <Route path='/blog' element={<Blog />} /> */}
                 <Route path="/product" element={<Product />} />
                 <Route path="/product/:id" element={<ProductDetails />} />
-
+                </Route>
+                
                 {/* <Route path="/product_details" element={<ProductDetails />} /> */}
                 <Route path='/login' element={<Login />}></Route>
                 <Route path='/signup' element={<SignUp />}></Route>
+
+                <Route element={<AdminLayout/>}>
+                  <Route path='/admin/dashboard' element={<AdminDashboard />} />
+                  <Route path='/admin/products' element={<Orders/>}/>
+                </Route>
               </Routes>
             </ErrorBoundary>
 
           </AuthProvider>
-
-        
-        <Footer />
       </BrowserRouter>
     </main>
   );

@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { styled, useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
-import Drawer from '@mui/material/Drawer';
-import CssBaseline from '@mui/material/CssBaseline';
+import MuiDrawer from '@mui/material/Drawer';
 import MuiAppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import List from '@mui/material/List';
+import CssBaseline from '@mui/material/CssBaseline';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
@@ -16,31 +16,107 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
-
-
-// card
-import CardContent from '@mui/material/CardContent';
-import Grid from '@mui/material/Grid';
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import Button from '@mui/material/Button';
 
 // icons
-
 import CategoryIcon from '@mui/icons-material/Category';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import PeopleIcon from '@mui/icons-material/People';
 import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import PaymentIcon from '@mui/icons-material/Payment';
 import SettingsIcon from '@mui/icons-material/Settings';
 import DashboardIcon from '@mui/icons-material/Dashboard';
-import Graph from './Graph';
-import Chart from './Chart';
 import HelpIcon from '@mui/icons-material/Help';
 import ReportIcon from '@mui/icons-material/Report';
 import LogoutIcon from '@mui/icons-material/Logout';
+
+import { Outlet } from 'react-router-dom';
+import { getFromLocalStorage } from '../../utils/Helpers';
+// dropdown
+import Collapse from '@mui/material/Collapse';
+import ExpandLess from '@mui/icons-material/ExpandLess';
+import ExpandMore from '@mui/icons-material/ExpandMore';
+
+
+const drawerWidth = 240;
+
+const openedMixin = (theme) => ({
+  width: drawerWidth,
+  transition: theme.transitions.create('width', {
+    easing: theme.transitions.easing.sharp,
+    duration: theme.transitions.duration.enteringScreen,
+  }),
+  overflowX: 'hidden',
+  backgroundColor: "#2C2C2C",
+  color: "#FFFFFF",
+});
+
+const closedMixin = (theme) => ({
+  transition: theme.transitions.create('width', {
+    easing: theme.transitions.easing.sharp,
+    duration: theme.transitions.duration.leavingScreen,
+  }),
+  overflowX: 'hidden',
+  backgroundColor: "#2C2C2C",
+  color: "#FFFFFF",
+  width: `calc(${theme.spacing(7)} + 1px)`,
+  [theme.breakpoints.up('sm')]: {
+    width: `calc(${theme.spacing(8)} + 1px)`,
+  },
+});
+
+const DrawerHeader = styled('div')(({ theme }) => ({
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'flex-end',
+  padding: theme.spacing(0, 1),
+  ...theme.mixins.toolbar,
+}));
+
+const AppBar = styled(MuiAppBar, {
+  shouldForwardProp: (prop) => prop !== 'open',
+})(({ theme, open }) => ({
+  zIndex: theme.zIndex.drawer + 1,
+  backgroundColor: "#1F1F1F",
+  color: "#FFFFFF",
+  transition: theme.transitions.create(['width', 'margin'], {
+    easing: theme.transitions.easing.sharp,
+    duration: theme.transitions.duration.leavingScreen,
+  }),
+  ...(open && {
+    marginLeft: drawerWidth,
+    width: `calc(100% - ${drawerWidth}px)`,
+    transition: theme.transitions.create(['width', 'margin'], {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.enteringScreen,
+    }),
+  }),
+}));
+
+const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' })(
+  ({ theme, open }) => ({
+    width: drawerWidth,
+    flexShrink: 0,
+    whiteSpace: 'nowrap',
+    boxSizing: 'border-box',
+    ...(open && {
+      ...openedMixin(theme),
+      '& .MuiDrawer-paper': openedMixin(theme),
+    }),
+    ...(!open && {
+      ...closedMixin(theme),
+      '& .MuiDrawer-paper': closedMixin(theme),
+    }),
+  }),
+);
+
+// menu items
+const menuItems = [
+  { text: 'Dashboard', icon: <DashboardIcon /> },
+  { text: 'Orders', icon: <CategoryIcon /> },
+  // { text: 'Products', icon: <ShoppingCartIcon /> },
+  { text: 'Shipping', icon: <LocalShippingIcon /> },
+  { text: 'Payments', icon: <PaymentIcon /> },
+  { text: 'Settings', icon: <SettingsIcon /> },
+];
 
 const bottomMenuItems = [
   { text: 'Help', icon: <HelpIcon /> },
@@ -48,229 +124,195 @@ const bottomMenuItems = [
   { text: 'Logout', icon: <LogoutIcon /> },
 ];
 
-
-
-
-const drawerWidth = 240;
-
-const menuItems = [
-  { text: 'Dashboard', icon: <DashboardIcon /> },
-  { text: 'Orders', icon: <CategoryIcon /> },
-  { text: 'Products', icon: <ShoppingCartIcon /> },
-  { text: 'Shipping', icon: <LocalShippingIcon /> },
-  { text: 'Payments', icon: <PaymentIcon /> },
-  { text: 'Settings', icon: <SettingsIcon /> },
-];
-
-const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
-  ({ theme }) => ({
-    flexGrow: 1,
-    padding: theme.spacing(3),
-    transition: theme.transitions.create('margin', {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-    marginLeft: `-${drawerWidth}px`,
-    variants: [
-      {
-        props: ({ open }) => open,
-        style: {
-          transition: theme.transitions.create('margin', {
-            easing: theme.transitions.easing.easeOut,
-            duration: theme.transitions.duration.enteringScreen,
-          }),
-          marginLeft: 0,
-        },
-      },
-    ],
-  }),
-);
-
-const AppBar = styled(MuiAppBar, {
-  shouldForwardProp: (prop) => prop !== 'open',
-})(({ theme }) => ({
-  transition: theme.transitions.create(['margin', 'width'], {
-    easing: theme.transitions.easing.sharp,
-    duration: theme.transitions.duration.leavingScreen,
-  }),
-  variants: [
-    {
-      props: ({ open }) => open,
-      style: {
-        width: `calc(100% - ${drawerWidth}px)`,
-        marginLeft: `${drawerWidth}px`,
-        transition: theme.transitions.create(['margin', 'width'], {
-          easing: theme.transitions.easing.easeOut,
-          duration: theme.transitions.duration.enteringScreen,
-        }),
-      },
-    },
-  ],
-}));
-
-const DrawerHeader = styled('div')(({ theme }) => ({
-  display: 'flex',
-  alignItems: 'center',
-  padding: theme.spacing(0, 1),
-  // necessary for content to be below app bar
-  ...theme.mixins.toolbar,
-  justifyContent: 'flex-end',
-}));
-
-
-
-export default function PersistentDrawerLeft() {
+function AdminLayout() {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
   const [selectedMenu, setSelectedMenu] = React.useState("Dashboard");
+  const [openProducts, setOpenProducts] = React.useState(false);
 
 
-  const handleDrawerOpen = () => {
-    setOpen(true);
-  };
-
-  const handleDrawerClose = () => {
-    setOpen(false);
-  };
-
-
+  const handleDrawerOpen = () => setOpen(true);
+  const handleDrawerClose = () => setOpen(false);
 
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
       <AppBar position="fixed" open={open}>
         <Toolbar>
-
-
-
-
-
           <IconButton
             color="inherit"
             aria-label="open drawer"
             onClick={handleDrawerOpen}
             edge="start"
-            sx={[
-              {
-                mr: 2,
-              },
-              open && { display: 'none' },
-            ]}
+            sx={{ marginRight: 5, ...(open && { display: 'none' }) }}
           >
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap component="div">
-            {selectedMenu}
+            Dashboard
           </Typography>
         </Toolbar>
       </AppBar>
-      <Drawer
-        sx={{
-          width: drawerWidth,
-          flexShrink: 0,
-          '& .MuiDrawer-paper': {
-            width: drawerWidth,
-            boxSizing: 'border-box',
-          },
-        }}
-        variant="persistent"
-        anchor="left"
-        open={open}
-      >
+      <Drawer variant="permanent" open={open}>
         <DrawerHeader>
           <Typography
             variant="h6"
-            component="h6"
-            sx={{ textAlign: "center", py: 2, color: "black" }}>
-            {/* ADDINA */}
-            <img src='/images/logo.png' />
+            sx={{ flexGrow: 1, textAlign: "center", color: "#f57c00", fontSize: 22 }}
+          >
+            Cohus
           </Typography>
           <IconButton onClick={handleDrawerClose}>
-            {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+            {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
           </IconButton>
- 
         </DrawerHeader>
         <Divider />
         <List>
           {menuItems.map((item) => (
-            <ListItem key={item.text} disablePadding>
-              <ListItemButton onClick={() => setSelectedMenu(item.text)}>
-                <ListItemIcon>{item.icon}</ListItemIcon>
-                <ListItemText primary={item.text} />
+            <ListItem key={item.text} disablePadding sx={{ display: 'block' }}>
+              <ListItemButton
+                sx={{
+                  minHeight: 48,
+                  justifyContent: open ? 'initial' : 'center',
+                  px: 2.5,
+                  '&:hover': { backgroundColor: "#f57c00", color: "#FFF" },
+                  '&.Mui-selected': {
+                    backgroundColor: "#f57c00",
+                    color: "#FFF",
+                    '& .MuiListItemIcon-root': { color: "#FFF" },
+                  },
+                }}
+                selected={selectedMenu === item.text}
+                onClick={() => setSelectedMenu(item.text)}
+              >
+                <ListItemIcon
+                  sx={{
+                    minWidth: 0,
+                    justifyContent: 'center',
+                    mr: open ? 3 : 'auto',
+                    color: "inherit",
+                  }}
+                >
+                  {item.icon}
+                </ListItemIcon>
+                <ListItemText primary={item.text} sx={{ opacity: open ? 1 : 0 }} />
               </ListItemButton>
             </ListItem>
           ))}
-        </List>
+          {/* --- Products Dropdown --- */}
+          <ListItem disablePadding sx={{ display: 'block' }}>
+            <ListItemButton
+              onClick={() => {
+                if (open) {   
+                  setOpenProducts(!openProducts);
+                }
+              }}
+              sx={{
+                minHeight: 48,
+                justifyContent: open ? 'initial' : 'center',
+                px: 2.5,
+                '&:hover': { backgroundColor: "#f57c00", color: "#FFF" },
+              }}
+            >
+              <ListItemIcon
+                sx={{
+                  minWidth: 0,
+                  justifyContent: 'center',
+                  mr: open ? 3 : 'auto',
+                  color: "inherit",
+                }}
+              >
+                <ShoppingCartIcon />
+              </ListItemIcon>
+              <ListItemText primary="Products" sx={{ opacity: open ? 1 : 0 }} />
+   
+              {open && (openProducts ? <ExpandLess /> : <ExpandMore />)}
+            </ListItemButton>
+          </ListItem>
 
+          <Collapse in={open && openProducts} timeout="auto" unmountOnExit>
+            <List component="div" disablePadding>
+              <ListItemButton
+                sx={{ pl: 4 }}
+                selected={selectedMenu === "Product List"}
+                onClick={() => setSelectedMenu("Product List")}
+              >
+                <ListItemText primary="Product List" />
+              </ListItemButton>
+
+              <ListItemButton
+                sx={{ pl: 4 }}
+                selected={selectedMenu === "Add Product"}
+                onClick={() => setSelectedMenu("Add Product")}
+              >
+                <ListItemText primary="Add Product" />
+              </ListItemButton>
+
+              <ListItemButton
+                sx={{ pl: 4 }}
+                selected={selectedMenu === "Product Filter"}
+                onClick={() => setSelectedMenu("Product Filter")}
+              >
+                <ListItemText primary="Product Filter" />
+              </ListItemButton>
+            </List>
+          </Collapse>
+
+        </List>
 
         <Divider />
         <List>
           {bottomMenuItems.map((item) => (
-            <ListItem key={item.text} disablePadding>
-              <ListItemButton onClick={() => setSelectedMenu(item.text)}>
-                <ListItemIcon>{item.icon}</ListItemIcon>
-                <ListItemText primary={item.text} />
+            <ListItem key={item.text} disablePadding sx={{ display: 'block' }}>
+              <ListItemButton
+                sx={{
+                  minHeight: 48,
+                  justifyContent: open ? 'initial' : 'center',
+                  px: 2.5,
+                  '&:hover': { backgroundColor: "#f57c00", color: "#FFF" },
+                  '&.Mui-selected': {
+                    backgroundColor: "#f57c00",
+                    color: "#FFF",
+                    '& .MuiListItemIcon-root': { color: "#FFF" },
+                  },
+                }}
+                selected={selectedMenu === item.text}
+                onClick={() => setSelectedMenu(item.text)}
+              >
+                <ListItemIcon
+                  sx={{
+                    minWidth: 0,
+                    justifyContent: 'center',
+                    mr: open ? 3 : 'auto',
+                    color: "inherit",
+                  }}
+                >
+                  {item.icon}
+                </ListItemIcon>
+                <ListItemText primary={item.text} sx={{ opacity: open ? 1 : 0 }} />
               </ListItemButton>
             </ListItem>
           ))}
         </List>
-
-
       </Drawer>
-
-
-      {/* card */}
-
-      <Main open={open}>
+      <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         <DrawerHeader />
-        <Grid container spacing={8} marginTop={5}>
-          <Grid item xs={12} md={4}>
-            <Card sx={{ minHeight: 200, boxShadow: 3, minWidth: 300 }}>
-              <CardContent>
-                <Typography variant="h6" gutterBottom>Total Orders</Typography>
-                <Typography variant="h4" color="primary">
-                  1,245
-                </Typography>
-              </CardContent>
-              <CardActions>
-                <Button size="small">View Orders</Button>
-              </CardActions>
-            </Card>
-          </Grid>
-          <Grid item xs={12} md={4}>
-            <Card sx={{ minHeight: 200, boxShadow: 3, minWidth: 300 }}>
-              <CardContent>
-                <Typography variant="h6" gutterBottom>Total Products</Typography>
-                <Typography variant="h4" color="secondary">
-                  356
-                </Typography>
-              </CardContent>
-              <CardActions>
-                <Button size="small">Manage Products</Button>
-              </CardActions>
-            </Card>
-          </Grid>
-          <Grid item xs={12} md={6}>
-            <Card sx={{ minHeight: 200, boxShadow: 3, minWidth: 300 }}>
-              <CardContent>
-                <Typography variant="h6" gutterBottom>Customers</Typography>
-                <Typography variant="h4" color="success.main">
-                  890
-                </Typography>
-              </CardContent>
-              <CardActions>
-                <Button size="small">View Customers</Button>
-              </CardActions>
-            </Card>
-          </Grid>
-          <Graph />
-          <Chart />
-        </Grid>
-
-      </Main>
-
+        <Outlet />
+      </Box>
     </Box>
   );
 }
 
+const AuthorizedAdminLayout = () => {
+  const [role, setRole] = React.useState(null);
 
+  React.useEffect(() => {
+    const userData = getFromLocalStorage('user_data');
+    setRole(JSON.parse(userData).role);
+  }, []);
+
+  if (!role) return <p>redirect to login page</p>;
+  if (role === 'admin') return <AdminLayout />;
+  return <p>Unauthorized user</p>;
+};
+
+export default AuthorizedAdminLayout;
