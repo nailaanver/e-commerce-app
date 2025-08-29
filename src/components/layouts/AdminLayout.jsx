@@ -27,6 +27,7 @@ import DashboardIcon from '@mui/icons-material/Dashboard';
 import HelpIcon from '@mui/icons-material/Help';
 import ReportIcon from '@mui/icons-material/Report';
 import LogoutIcon from '@mui/icons-material/Logout';
+import AccountCircle from '@mui/icons-material/AccountCircle'; 
 
 import { Outlet } from 'react-router-dom';
 import { getFromLocalStorage } from '../../utils/Helpers';
@@ -34,6 +35,8 @@ import { getFromLocalStorage } from '../../utils/Helpers';
 import Collapse from '@mui/material/Collapse';
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
+import MenuItem from '@mui/material/MenuItem';
+import Menu from '@mui/material/Menu';
 
 
 const drawerWidth = 240;
@@ -129,6 +132,8 @@ function AdminLayout() {
   const [open, setOpen] = React.useState(false);
   const [selectedMenu, setSelectedMenu] = React.useState("Dashboard");
   const [openProducts, setOpenProducts] = React.useState(false);
+  const [anchorEl, setAnchorEl] = React.useState(null);
+
 
 
   const handleDrawerOpen = () => setOpen(true);
@@ -137,22 +142,75 @@ function AdminLayout() {
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
-      <AppBar position="fixed" open={open}>
-        <Toolbar>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            onClick={handleDrawerOpen}
-            edge="start"
-            sx={{ marginRight: 5, ...(open && { display: 'none' }) }}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" noWrap component="div">
-            Dashboard
-          </Typography>
-        </Toolbar>
-      </AppBar>
+     <AppBar position="fixed" open={open}>
+  <Toolbar>
+    {/* --- Menu Button (when drawer is closed) --- */}
+    {!open && (
+      <IconButton
+        color="inherit"
+        aria-label="open drawer"
+        onClick={handleDrawerOpen}
+        edge="start"
+        sx={{ marginRight: 5 }}
+      >
+        <MenuIcon />
+      </IconButton>
+    )}
+
+    {/* --- Close Button (when drawer is open, shown left of Dashboard) --- */}
+    {open && (
+      <IconButton
+        color="inherit"
+        aria-label="close drawer"
+        onClick={handleDrawerClose}
+        edge="start"
+        sx={{ marginRight: 2 }}
+      >
+        <MenuIcon />
+      </IconButton>
+    )}
+
+    {/* --- Title --- */}
+    <Typography variant="h6" noWrap component="div" sx={{ flexGrow: 1 }}>
+      Dashboard
+    </Typography>
+
+    {/* --- Profile Icon + Dropdown Menu --- */}
+    <Box>
+      <IconButton
+        size="large"
+        edge="end"
+        color="inherit"
+        aria-label="account of current user"
+        aria-controls="menu-appbar"
+        aria-haspopup="true"
+        onClick={(e) => setAnchorEl(e.currentTarget)}
+      >
+        <AccountCircle />
+      </IconButton>
+      <Menu
+        id="menu-appbar"
+        anchorEl={anchorEl}
+        anchorOrigin={{
+          vertical: 'top',
+          horizontal: 'right',
+        }}
+        keepMounted
+        transformOrigin={{
+          vertical: 'top',
+          horizontal: 'right',
+        }}
+        open={Boolean(anchorEl)}
+        onClose={() => setAnchorEl(null)}
+      >
+        <MenuItem onClick={() => setAnchorEl(null)}>Profile</MenuItem>
+        <MenuItem onClick={() => setAnchorEl(null)}>My account</MenuItem>
+      </Menu>
+    </Box>
+  </Toolbar>
+</AppBar>
+
+
       <Drawer variant="permanent" open={open}>
         <DrawerHeader>
           <Typography
@@ -176,9 +234,9 @@ function AdminLayout() {
                   px: 2.5,
                   '&:hover': { backgroundColor: "#f57c00", color: "#FFF" },
                   '&.Mui-selected': {
-                    backgroundColor: "#f57c00",
+                    // backgroundColor: "#f57c00",
                     color: "#FFF",
-                    '& .MuiListItemIcon-root': { color: "#FFF" },
+                    // '& .MuiListItemIcon-root': { color: "#FFF" },
                   },
                 }}
                 selected={selectedMenu === item.text}
@@ -240,7 +298,7 @@ function AdminLayout() {
               </ListItemButton>
 
               <ListItemButton
-                sx={{ pl: 4 }}
+                sx={{ pl: 4, }}
                 selected={selectedMenu === "Add Product"}
                 onClick={() => setSelectedMenu("Add Product")}
               >
@@ -270,7 +328,7 @@ function AdminLayout() {
                   px: 2.5,
                   '&:hover': { backgroundColor: "#f57c00", color: "#FFF" },
                   '&.Mui-selected': {
-                    backgroundColor: "#f57c00",
+                    // backgroundColor: "#f57c00",
                     color: "#FFF",
                     '& .MuiListItemIcon-root': { color: "#FFF" },
                   },
