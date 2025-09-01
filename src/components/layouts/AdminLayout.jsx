@@ -28,8 +28,12 @@ import HelpIcon from '@mui/icons-material/Help';
 import ReportIcon from '@mui/icons-material/Report';
 import LogoutIcon from '@mui/icons-material/Logout';
 import AccountCircle from '@mui/icons-material/AccountCircle'; 
+import InventoryIcon from '@mui/icons-material/Inventory'
+import PeopleIcon from '@mui/icons-material/People'
+import TrendingUpIcon from '@mui/icons-material/TrendingUp'
 
-import { Outlet } from 'react-router-dom';
+
+import { Link, Outlet } from 'react-router-dom';
 import { getFromLocalStorage } from '../../utils/Helpers';
 // dropdown
 import Collapse from '@mui/material/Collapse';
@@ -37,6 +41,10 @@ import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
+
+import { useLocation } from 'react-router-dom';
+
+
 
 
 const drawerWidth = 240;
@@ -111,17 +119,17 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
   }),
 );
 
-// menu items
+// link to list items
+
 const menuItems = [
-  { text: 'Dashboard', icon: <DashboardIcon /> },
-  { text: 'Orders', icon: <CategoryIcon /> },
-  // { text: 'Products', icon: <ShoppingCartIcon /> },
-  { text: 'Shipping', icon: <LocalShippingIcon /> },
-  { text: 'Payments', icon: <PaymentIcon /> },
-  { text: 'Settings', icon: <SettingsIcon /> },
+  { text: "Dashboard", icon: <DashboardIcon />, path: '/admin/dashboard' },
+  { text: 'Orders', icon: <CategoryIcon />, path: '/admin/orders' },
+  { text: 'Shipping', icon: <LocalShippingIcon />, path: '/admin/shipping' },
+  { text: 'Payments', icon: <PaymentIcon />, path: '/admin/payements' },
 ];
 
 const bottomMenuItems = [
+  { text: 'Settings', icon: <SettingsIcon />, path:'/admin/settings' },
   { text: 'Help', icon: <HelpIcon /> },
   { text: 'Report', icon: <ReportIcon /> },
   { text: 'Logout', icon: <LogoutIcon /> },
@@ -134,7 +142,7 @@ function AdminLayout() {
   const [openProducts, setOpenProducts] = React.useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
 
-
+const location = useLocation();
 
   const handleDrawerOpen = () => setOpen(true);
   const handleDrawerClose = () => setOpen(false);
@@ -203,7 +211,7 @@ function AdminLayout() {
         open={Boolean(anchorEl)}
         onClose={() => setAnchorEl(null)}
       >
-        <MenuItem onClick={() => setAnchorEl(null)}>Profile</MenuItem>
+        <MenuItem  onClick={() => setAnchorEl(null)}>Profile</MenuItem>
         <MenuItem onClick={() => setAnchorEl(null)}>My account</MenuItem>
       </Menu>
     </Box>
@@ -292,6 +300,7 @@ function AdminLayout() {
               <ListItemButton
                 sx={{ pl: 4 }}
                 selected={selectedMenu === "Product List"}
+                href='/admin/products/product-list'
                 onClick={() => setSelectedMenu("Product List")}
               >
                 <ListItemText primary="Product List" />
@@ -300,18 +309,19 @@ function AdminLayout() {
               <ListItemButton
                 sx={{ pl: 4, }}
                 selected={selectedMenu === "Add Product"}
+                href='/admin/products/add-products'
                 onClick={() => setSelectedMenu("Add Product")}
               >
                 <ListItemText primary="Add Product" />
               </ListItemButton>
 
-              <ListItemButton
+              {/* <ListItemButton
                 sx={{ pl: 4 }}
                 selected={selectedMenu === "Product Filter"}
                 onClick={() => setSelectedMenu("Product Filter")}
               >
                 <ListItemText primary="Product Filter" />
-              </ListItemButton>
+              </ListItemButton> */}
             </List>
           </Collapse>
 
@@ -365,12 +375,17 @@ const AuthorizedAdminLayout = () => {
 
   React.useEffect(() => {
     const userData = getFromLocalStorage('user_data');
-    setRole(JSON.parse(userData).role);
+    if (userData) {
+      setRole(JSON.parse(userData).role);
+    } 
   }, []);
 
-  if (!role) return <p>redirect to login page</p>;
-  if (role === 'admin') return <AdminLayout />;
-  return <p>Unauthorized user</p>;
+  if (!role) 
+  //   return <Link to={'/admin-login'}>AdminLogin</Link>;
+  // if (role === 'admin') return <AdminLayout />;
+  // return <p>Unauthorized user</p>;
+
+  return <AdminLayout/>
 };
 
 export default AuthorizedAdminLayout;

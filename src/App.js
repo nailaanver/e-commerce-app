@@ -17,6 +17,11 @@ import AdminDashboard from './components/AdminDashboard';
 import Orders from './pages/admin/Orders';
 import AdminLayout from './components/layouts/AdminLayout'
 import UserLayout from './components/layouts/UserLayout';
+import AdminLogin from './components/AdminLogin';
+import  ProductList  from './pages/admin/ProductList';
+import AddProducts from './pages/admin/AddProduct'
+import  Shipping from './pages/admin/Shipping';
+import Payments from './pages/admin/Payments'
 
 
 
@@ -25,7 +30,7 @@ function App() {
   return (
     <main>
       <BrowserRouter>
-      <ProtectRoutes/>        
+      {/* <ProtectRoutes/>         */}
           <AuthProvider>
             <ErrorBoundary>
               <Routes>
@@ -41,11 +46,25 @@ function App() {
                 {/* <Route path="/product_details" element={<ProductDetails />} /> */}
                 <Route path='/login' element={<Login />}></Route>
                 <Route path='/signup' element={<SignUp />}></Route>
+                <Route path='/admin-login' element={<AdminLogin/>}/>
 
-                <Route element={<AdminLayout/>}>
+                {/* <Route element={<AdminLayout/>}>
                   <Route path='/admin/dashboard' element={<AdminDashboard />} />
                   <Route path='/admin/products' element={<Orders/>}/>
+                </Route> */}
+
+                {/* <Route element={<ProtectedRoutes adminOnly={true} />}> */}
+                <Route>
+                <Route element={<AdminLayout />}>
+                  <Route path="/admin/dashboard" element={<AdminDashboard />} />
+                  <Route path="/admin/products/product-list" element={<ProductList />} />
+                  <Route path="/admin/products/add-products" element={<AddProducts />} />
+                  <Route path="/admin/orders" element={<Orders />} /> 
+                   <Route path="/admin/shipping" element={<Shipping />} /> 
+                   <Route path="/admin/payments" element={<Payments />} />
+                  {/* <Route path="/admin/analytics" element={<Report />} /> */}
                 </Route>
+              </Route>
               </Routes>
             </ErrorBoundary>
 
