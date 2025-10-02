@@ -14,14 +14,18 @@ import { AuthProvider } from './context/AuthContext';
 import  Product  from './components/Product';
 import ProductDetails from './components/ProductDetails';
 import AdminDashboard from './components/AdminDashboard';
-import Orders from './pages/admin/Orders';
 import AdminLayout from './components/layouts/AdminLayout'
 import UserLayout from './components/layouts/UserLayout';
 import AdminLogin from './components/AdminLogin';
 import  ProductList  from './pages/admin/ProductList';
 import AddProducts from './pages/admin/AddProduct'
 import  Shipping from './pages/admin/Shipping';
-import Payments from './pages/admin/Payments'
+import Payments from './pages/admin/Payments';
+import OrderDetails from './pages/admin/OrderDetails';
+import OrderList from './pages/admin/OrderList';
+import Settings from './pages/admin/Settings';
+import Help from './pages/admin/Help';
+import Report from './pages/admin/Report';
 
 
 
@@ -32,7 +36,7 @@ function App() {
       <BrowserRouter>
       {/* <ProtectRoutes/>         */}
           <AuthProvider>
-            <ErrorBoundary>
+            {/* <ErrorBoundary> */}
               <Routes>
                 <Route element={<UserLayout/>}>
                  <Route path='/' element={<Home />} />
@@ -53,20 +57,22 @@ function App() {
                   <Route path='/admin/products' element={<Orders/>}/>
                 </Route> */}
 
-                {/* <Route element={<ProtectedRoutes adminOnly={true} />}> */}
-                <Route>
                 <Route element={<AdminLayout />}>
                   <Route path="/admin/dashboard" element={<AdminDashboard />} />
                   <Route path="/admin/products/product-list" element={<ProductList />} />
                   <Route path="/admin/products/add-products" element={<AddProducts />} />
-                  <Route path="/admin/orders" element={<Orders />} /> 
-                   <Route path="/admin/shipping" element={<Shipping />} /> 
-                   <Route path="/admin/payments" element={<Payments />} />
+                  <Route path="/admin/orders/order-list" element={<OrderList />} /> 
+                  <Route path="/admin/orders/order-details" element={<OrderDetails />} /> 
+                  <Route path="/admin/shipping" element={<Shipping />} /> 
+                  <Route path="/admin/payments" element={<Payments />} />
+                  <Route path="/admin/settings" element={<Settings />} />
+                  <Route path="/admin/help" element={<Help />} />
+                  <Route path="/admin/report" element={<Report />} />
                   {/* <Route path="/admin/analytics" element={<Report />} /> */}
                 </Route>
-              </Route>
+            
               </Routes>
-            </ErrorBoundary>
+            {/* </ErrorBoundary> */}
 
           </AuthProvider>
       </BrowserRouter>

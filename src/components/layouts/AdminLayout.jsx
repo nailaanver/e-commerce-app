@@ -28,9 +28,7 @@ import HelpIcon from '@mui/icons-material/Help';
 import ReportIcon from '@mui/icons-material/Report';
 import LogoutIcon from '@mui/icons-material/Logout';
 import AccountCircle from '@mui/icons-material/AccountCircle'; 
-import InventoryIcon from '@mui/icons-material/Inventory'
-import PeopleIcon from '@mui/icons-material/People'
-import TrendingUpIcon from '@mui/icons-material/TrendingUp'
+
 
 
 import { Link, Outlet } from 'react-router-dom';
@@ -41,10 +39,6 @@ import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
-
-import { useLocation } from 'react-router-dom';
-
-
 
 
 const drawerWidth = 240;
@@ -123,15 +117,15 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 
 const menuItems = [
   { text: "Dashboard", icon: <DashboardIcon />, path: '/admin/dashboard' },
-  { text: 'Orders', icon: <CategoryIcon />, path: '/admin/orders' },
+  // { text: 'Orders', icon: <CategoryIcon />, path: '/admin/orders' },
   { text: 'Shipping', icon: <LocalShippingIcon />, path: '/admin/shipping' },
-  { text: 'Payments', icon: <PaymentIcon />, path: '/admin/payements' },
+  { text: 'Payments', icon: <PaymentIcon />, path: '/admin/payments' },
 ];
 
 const bottomMenuItems = [
   { text: 'Settings', icon: <SettingsIcon />, path:'/admin/settings' },
-  { text: 'Help', icon: <HelpIcon /> },
-  { text: 'Report', icon: <ReportIcon /> },
+  { text: 'Help', icon: <HelpIcon /> , path:'/admin/help'},
+  { text: 'Report', icon: <ReportIcon />, path:'/admin/report' },
   { text: 'Logout', icon: <LogoutIcon /> },
 ];
 
@@ -141,8 +135,10 @@ function AdminLayout() {
   const [selectedMenu, setSelectedMenu] = React.useState("Dashboard");
   const [openProducts, setOpenProducts] = React.useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const [openOrders, setOpenOrders] = React.useState(false);
 
-const location = useLocation();
+
+
 
   const handleDrawerOpen = () => setOpen(true);
   const handleDrawerClose = () => setOpen(false);
@@ -236,6 +232,7 @@ const location = useLocation();
           {menuItems.map((item) => (
             <ListItem key={item.text} disablePadding sx={{ display: 'block' }}>
               <ListItemButton
+              href={item.path}
                 sx={{
                   minHeight: 48,
                   justifyContent: open ? 'initial' : 'center',
@@ -327,11 +324,96 @@ const location = useLocation();
 
         </List>
 
+        <List>
+  {/* {menuItems.map((item) => (
+    item.text !== "Orders" ? (   // skip Orders here
+      <ListItem key={item.text} disablePadding sx={{ display: 'block' }}>
+        <ListItemButton
+          href={item.path}
+          sx={{
+            minHeight: 48,
+            justifyContent: open ? 'initial' : 'center',
+            px: 2.5,
+            '&:hover': { backgroundColor: "#f57c00", color: "#FFF" },
+          }}
+          selected={selectedMenu === item.text}
+          onClick={() => setSelectedMenu(item.text)}
+        >
+          <ListItemIcon
+            sx={{
+              minWidth: 0,
+              justifyContent: 'center',
+              mr: open ? 3 : 'auto',
+              color: "inherit",
+            }}
+          >
+            {item.icon}
+          </ListItemIcon>
+          <ListItemText primary={item.text} sx={{ opacity: open ? 1 : 0 }} />
+        </ListItemButton>
+      </ListItem>
+    ) : null
+  ))} */}
+
+  {/* --- Orders Dropdown --- */}
+  <ListItem disablePadding sx={{ display: 'block' }}>
+    <ListItemButton
+      onClick={() => {
+        if (open) {
+          setOpenOrders(!openOrders);
+        }
+      }}
+      sx={{
+        minHeight: 48,
+        justifyContent: open ? 'initial' : 'center',
+        px: 2.5,
+        '&:hover': { backgroundColor: "#f57c00", color: "#FFF" },
+      }}
+    >
+      <ListItemIcon
+        sx={{
+          minWidth: 0,
+          justifyContent: 'center',
+          mr: open ? 3 : 'auto',
+          color: "inherit",
+        }}
+      >
+        <CategoryIcon />
+      </ListItemIcon>
+      <ListItemText primary="Orders" sx={{ opacity: open ? 1 : 0 }} />
+      {open && (openOrders ? <ExpandLess /> : <ExpandMore />)}
+    </ListItemButton>
+  </ListItem>
+
+  <Collapse in={open && openOrders} timeout="auto" unmountOnExit>
+    <List component="div" disablePadding>
+      <ListItemButton
+        sx={{ pl: 4 }}
+        selected={selectedMenu === "Order List"}
+        href="/admin/orders/order-list"
+        onClick={() => setSelectedMenu("Order List")}
+      >
+        <ListItemText primary="Order List" />
+      </ListItemButton>
+
+      <ListItemButton
+        sx={{ pl: 4 }}
+        selected={selectedMenu === "Order Details"}
+        href="/admin/orders/order-details"
+        onClick={() => setSelectedMenu("Order Details")}
+      >
+        <ListItemText primary="Order Details" />
+      </ListItemButton>
+    </List>
+  </Collapse>
+</List>
+
         <Divider />
         <List>
           {bottomMenuItems.map((item) => (
             <ListItem key={item.text} disablePadding sx={{ display: 'block' }}>
               <ListItemButton
+              href={item.path}
                 sx={{
                   minHeight: 48,
                   justifyContent: open ? 'initial' : 'center',

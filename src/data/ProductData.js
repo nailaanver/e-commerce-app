@@ -17,7 +17,7 @@ export const ProductData = [
         title:'Chair pillow',
         
          price: {
-            actual: 80.00,
+            actual: 60.00,
             selling: 32.09,
             currency: '$'
         }
@@ -29,7 +29,7 @@ export const ProductData = [
         category:'SKIN PRODUCT',
         title:'Curaskin Lipgel',
         price: {
-            actual: 80.00,
+            actual: 70.00,
             selling: 43.00,
             currency: '$'
         }
@@ -40,7 +40,7 @@ export const ProductData = [
         category:'ACCESSORIES',
         title:'leather chair',
         price: {
-            actual: 80.00,
+            actual: 67.00,
             selling: 12.00,
             currency: '$'
         }
@@ -87,7 +87,7 @@ export const ProductData = [
         category:'ACCESSORIES',
         title:'leather chair',
         price: {
-            actual: 80.00,
+            actual: 90.00,
             selling: 66.5,
             currency: '$'
         }
